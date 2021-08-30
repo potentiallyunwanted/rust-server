@@ -15,6 +15,16 @@
             println!("Listening on {}", self.addr);
 
             let listener = TcpListener::bind(&self.addr).unwrap();
+
+            loop {
+                match listener.accept() {
+                    Ok((stream, addr)) => {
+                        println!("connected to adderess {}", addr)
+                    },
+                    Err(e) => println!("Failed to establish a connection: {}", e),
+                }
+
+            }
         }
     }
 
